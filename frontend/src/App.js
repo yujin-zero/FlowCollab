@@ -1,12 +1,8 @@
-import React from 'react';
+import React from "react";
+import MainPage from "./components/MainPage";
 
 function App() {
-  return (
-    <div className="App" style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Welcome to FlowCollab!</h1>
-      <p>This is your starting point for React development.</p>
-    </div>
-  );
+  return <MainPage />;
 }
 
 export default App;
