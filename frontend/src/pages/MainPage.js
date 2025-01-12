@@ -45,7 +45,10 @@ function MainPage() {
           <div className="space-y-4">
             {/* Example Project */}
             <div className="p-4 bg-white shadow-md rounded-md hover:shadow-lg transition duration-200">
-              <h3 className="text-lg font-bold text-blue-600 hover:underline cursor-pointer">
+            <h3
+                className="text-lg font-bold text-blue-600 hover:underline cursor-pointer"
+                onClick={() => (window.location.href = `/project/1`)}
+              >
                 Project Name 1
               </h3>
               <p className="text-gray-700 text-sm">
