@@ -1,8 +1,17 @@
 import React from "react";
-import MainPage from "./components/MainPage";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import NewProjectPage from "./pages/NewProjectPage";
 
 function App() {
-  return <MainPage />;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/new-project" element={<NewProjectPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
