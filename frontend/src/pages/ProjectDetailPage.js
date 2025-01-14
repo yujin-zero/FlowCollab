@@ -16,7 +16,6 @@ function ProjectDetailPage() {
 
   const renderOverviewContent = () => (
     <div className="p-4">
-      {/* Browser-like Tabs */}
       <div className="border-b mb-4">
         <div className="flex items-center">
           {browserTabs.map((tab) => (
@@ -38,8 +37,6 @@ function ProjectDetailPage() {
           </button>
         </div>
       </div>
-
-      {/* Blog Section */}
       <div className="mb-6">
         <textarea
           value={blogContent}
@@ -48,8 +45,6 @@ function ProjectDetailPage() {
           className="w-full h-40 p-2 border rounded-md resize-none"
         ></textarea>
       </div>
-
-      {/* Comments Section */}
       <div className="border-t pt-4">
         <h2 className="text-lg font-bold mb-2">Comments</h2>
         <ul className="mb-4">
@@ -148,6 +143,45 @@ function ProjectDetailPage() {
     </div>
   );
 
+  const renderSettingsContent = () => (
+    <div className="p-4 space-y-6">
+      <div>
+        <h2 className="text-lg font-bold mb-2">Project Name</h2>
+        <input
+          type="text"
+          value="FlowCollab Project"
+          className="w-full p-2 border rounded-md"
+        />
+      </div>
+      <div>
+        <h2 className="text-lg font-bold mb-2">Project Description</h2>
+        <textarea
+          value="This is a project description."
+          className="w-full p-2 border rounded-md resize-none"
+        ></textarea>
+      </div>
+      <div>
+        <h2 className="text-lg font-bold mb-2">Invite Team Member</h2>
+        <div className="flex items-center space-x-2">
+          <input
+            type="email"
+            placeholder="Enter email address"
+            className="flex-1 p-2 border rounded-md"
+          />
+          <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+            Invite
+          </button>
+        </div>
+      </div>
+      <div>
+        <h2 className="text-lg font-bold mb-2 text-red-500">Delete Project</h2>
+        <button className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+          Delete Project
+        </button>
+      </div>
+    </div>
+  );
+
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
@@ -157,7 +191,7 @@ function ProjectDetailPage() {
       case "progress":
         return renderProgressContent();
       case "settings":
-        return <div>Settings content goes here.</div>;
+        return renderSettingsContent();
       default:
         return <div>Overview content goes here.</div>;
     }
@@ -165,18 +199,12 @@ function ProjectDetailPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
-      {/* Header */}
       <header className="flex justify-between items-center px-6 py-4 bg-gray-900 text-white">
         <h1 className="text-2xl font-bold">FlowCollab</h1>
-        <button
-          onClick={() => window.history.back()}
-          className="px-4 py-2 bg-gray-500 rounded-md text-sm hover:bg-gray-600"
-        >
+        <button className="px-4 py-2 bg-gray-500 rounded-md text-sm hover:bg-gray-600">
           Back
         </button>
       </header>
-
-      {/* Navigation Tabs */}
       <nav className="bg-white shadow-md">
         <ul className="flex justify-around">
           {[
@@ -197,8 +225,6 @@ function ProjectDetailPage() {
           ))}
         </ul>
       </nav>
-
-      {/* Main Content */}
       <div className="flex flex-1 flex-col items-center p-6">
         <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-6">
           {renderContent()}
