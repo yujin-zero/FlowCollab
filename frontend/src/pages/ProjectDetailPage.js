@@ -11,8 +11,6 @@ function ProjectDetailPage() {
         return <div>Team status content goes here.</div>;
       case "progress":
         return <div>Progress content goes here.</div>;
-      case "insights":
-        return <div>Insights content goes here.</div>;
       case "settings":
         return <div>Settings content goes here.</div>;
       default:
@@ -40,7 +38,6 @@ function ProjectDetailPage() {
             { id: "overview", label: "현황" },
             { id: "team", label: "팀원별 현황" },
             { id: "progress", label: "진행 사항" },
-            { id: "insights", label: "인사이트" },
             { id: "settings", label: "세팅" },
           ].map((tab) => (
             <li
