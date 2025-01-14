@@ -199,11 +199,13 @@ function ProjectDetailPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
-      <header className="flex justify-between items-center px-6 py-4 bg-gray-900 text-white">
-        <h1 className="text-2xl font-bold">FlowCollab</h1>
-        <button className="px-4 py-2 bg-gray-500 rounded-md text-sm hover:bg-gray-600">
-          Back
-        </button>
+      <header className="flex justify-start items-center px-6 py-4 bg-gray-900 text-white">
+        <h1
+          className="text-2xl font-bold cursor-pointer"
+          onClick={() => (window.location.href = "/")}
+        >
+          FlowCollab
+        </h1>
       </header>
       <nav className="bg-white shadow-md">
         <ul className="flex justify-around">
