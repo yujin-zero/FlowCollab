@@ -9,8 +9,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* <Route path="/" element={<MainPage />} /> */}
+        {/* 로그인 여부에 따라 LandingPage 또는 MainPage를 표시 */}
         <Route path="/" element={<LandingPage />} />
+        <Route path="/main" element={<MainPage />} />
         <Route path="/new-project" element={<NewProjectPage />} />
         <Route path="/project/:id" element={<ProjectDetailPage />} />
       </Routes>
