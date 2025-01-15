@@ -6,7 +6,7 @@ function Overview() {
   ]);
   const [activeBrowserTab, setActiveBrowserTab] = useState("Tab 1");
   const [newComment, setNewComment] = useState("");
-  const [currentUser, setCurrentUser] = useState("Anonymous"); // Placeholder for user ID
+  const [currentUser] = useState("Anonymous"); // Placeholder for user ID
 
   const addBrowserTab = () => {
     const newTabName = `Tab ${browserTabs.length + 1}`;
