@@ -6,6 +6,8 @@ import ProjectDetailPage from "./pages/ProjectDetailPage";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import FollowersPage from "./pages/FollowersPage";
+import FollowingPage from "./pages/FollowingPage";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/project/:id" element={<ProjectDetailPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/followers" element={<FollowersPage />} />
+        <Route path="/following" element={<FollowingPage />} />
       </Routes>
     </Router>
   );
