@@ -36,6 +36,8 @@ function Team() {
     }))
   );
 
+  const [selectedTask, setSelectedTask] = useState(null);
+
   const handleInputChange = (memberIndex, status, value) => {
     const updatedInputs = [...taskInputs];
     updatedInputs[memberIndex][status] = value;
@@ -54,6 +56,35 @@ function Team() {
     setTaskInputs(updatedInputs);
 
     setMembers(updatedMembers);
+  };
+
+  const handleTaskClick = (memberIndex, status, taskIndex) => {
+    setSelectedTask({ memberIndex, status, taskIndex });
+  };
+
+  const updateTaskStatus = (newStatus) => {
+    if (!selectedTask) return;
+
+    const { memberIndex, status, taskIndex } = selectedTask;
+    const updatedMembers = [...members];
+
+    const task = updatedMembers[memberIndex].tasks[status].splice(taskIndex, 1)[0];
+    updatedMembers[memberIndex].tasks[newStatus].push(task);
+
+    setMembers(updatedMembers);
+    setSelectedTask(null);
+  };
+
+  const deleteTask = () => {
+    if (!selectedTask) return;
+
+    const { memberIndex, status, taskIndex } = selectedTask;
+    const updatedMembers = [...members];
+
+    updatedMembers[memberIndex].tasks[status].splice(taskIndex, 1);
+
+    setMembers(updatedMembers);
+    setSelectedTask(null);
   };
 
   return (
@@ -81,7 +112,8 @@ function Team() {
                       {tasks.map((task, index) => (
                         <li
                           key={index}
-                          className="p-2 bg-white border rounded-md shadow"
+                          onClick={() => handleTaskClick(memberIndex, status, index)}
+                          className="p-2 bg-white border rounded-md shadow cursor-pointer hover:bg-gray-200"
                         >
                           {task}
                         </li>
@@ -112,6 +144,47 @@ function Team() {
           </div>
         ))}
       </div>
+
+      {/* Modal */}
+      {selectedTask && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-md shadow-lg w-96">
+            <h3 className="text-lg font-semibold mb-4">Manage Task</h3>
+            <div className="space-y-2">
+              <button
+                onClick={() => updateTaskStatus("To Do")}
+                className="w-full py-2 px-4 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
+              >
+                Move to To Do
+              </button>
+              <button
+                onClick={() => updateTaskStatus("In Progress")}
+                className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+              >
+                Move to In Progress
+              </button>
+              <button
+                onClick={() => updateTaskStatus("Done")}
+                className="w-full py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
+              >
+                Move to Done
+              </button>
+              <button
+                onClick={deleteTask}
+                className="w-full py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-600"
+              >
+                Delete Task
+              </button>
+            </div>
+            <button
+              onClick={() => setSelectedTask(null)}
+              className="mt-4 w-full py-2 px-4 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
