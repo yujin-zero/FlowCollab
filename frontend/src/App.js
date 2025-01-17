@@ -4,6 +4,7 @@ import MainPage from "./pages/MainPage";
 import NewProjectPage from "./pages/NewProjectPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
 import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/new-project" element={<NewProjectPage />} />
         <Route path="/project/:id" element={<ProjectDetailPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );
