@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Quill의 기본 스타일
 
 function Overview() {
   const [browserTabs, setBrowserTabs] = useState([
@@ -35,7 +37,6 @@ function Overview() {
     );
     console.log("Saving Data:", activeTabData);
     alert(`Data for ${activeBrowserTab} saved!`);
-    // Optionally send data to backend here.
     toggleEditMode();
   };
 
@@ -69,12 +70,12 @@ function Overview() {
 
       {activeTab.isEditing ? (
         <div className="mb-6">
-          <textarea
+          <ReactQuill
             value={activeTab.blogContent}
-            onChange={(e) => updateActiveTab("blogContent", e.target.value)}
+            onChange={(content) => updateActiveTab("blogContent", content)}
             placeholder="Write something or attach a photo..."
-            className="w-full h-40 p-2 border rounded-md resize-none"
-          ></textarea>
+            className="w-full h-40"
+          />
           <div className="mt-4">
             <button
               onClick={saveData}
@@ -92,9 +93,10 @@ function Overview() {
         </div>
       ) : (
         <div className="mb-6">
-          <p className="w-full h-40 p-2 border rounded-md bg-gray-100">
-            {activeTab.blogContent || "No content available."}
-          </p>
+          <div
+            className="w-full h-40 p-2 border rounded-md bg-gray-100"
+            dangerouslySetInnerHTML={{ __html: activeTab.blogContent }}
+          ></div>
           <button
             onClick={toggleEditMode}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
