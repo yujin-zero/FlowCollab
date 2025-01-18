@@ -52,6 +52,21 @@ function Overview() {
 
   const activeTab = browserTabs.find((tab) => tab.name === activeBrowserTab);
 
+  const handleContextMenu = (event, tabName) => {
+    event.preventDefault();
+    const newName = prompt("Enter new name for the tab:", tabName);
+    if (newName && newName.trim()) {
+      setBrowserTabs((tabs) =>
+        tabs.map((tab) =>
+          tab.name === tabName ? { ...tab, name: newName.trim() } : tab
+        )
+      );
+      if (activeBrowserTab === tabName) {
+        setActiveBrowserTab(newName.trim());
+      }
+    }
+  };
+
   return (
     <div className="p-4">
       <div className="border-b mb-4">
@@ -65,6 +80,7 @@ function Overview() {
                   : "border-transparent"
               }`}
               onClick={() => setActiveBrowserTab(tab.name)}
+              onContextMenu={(e) => handleContextMenu(e, tab.name)}
             >
               {tab.name}
             </div>
