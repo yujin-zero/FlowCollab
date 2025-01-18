@@ -74,9 +74,10 @@ function Overview() {
             value={activeTab.blogContent}
             onChange={(content) => updateActiveTab("blogContent", content)}
             placeholder="Write something or attach a photo..."
-            className="w-full h-40"
+            className="w-full border rounded-md"
+            style={{ minHeight: "250px" }}
           />
-          <div className="mt-4">
+          <div className="mt-6 flex justify-end space-x-4">
             <button
               onClick={saveData}
               className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
@@ -85,7 +86,7 @@ function Overview() {
             </button>
             <button
               onClick={toggleEditMode}
-              className="ml-2 px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
+              className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
             >
               Cancel
             </button>
@@ -94,7 +95,7 @@ function Overview() {
       ) : (
         <div className="mb-6">
           <div
-            className="w-full h-40 p-2 border rounded-md bg-gray-100"
+            className="w-full min-h-40 p-2 border rounded-md bg-gray-100"
             dangerouslySetInnerHTML={{ __html: activeTab.blogContent }}
           ></div>
           <button
