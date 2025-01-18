@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Quill의 기본 스타일
 
@@ -9,6 +9,16 @@ function Overview() {
   const [activeBrowserTab, setActiveBrowserTab] = useState("Tab 1");
   const [newComment, setNewComment] = useState("");
   const [currentUser] = useState("Anonymous"); // Placeholder for user ID
+  const previewRef = useRef(null);
+  const editorRef = useRef(null);
+
+  useEffect(() => {
+    // Adjust the editor height to match the preview height exactly
+    if (previewRef.current && editorRef.current) {
+      const previewHeight = previewRef.current.clientHeight;
+      editorRef.current.style.height = `${previewHeight}px`;
+    }
+  }, [browserTabs, activeBrowserTab]);
 
   const addBrowserTab = () => {
     const newTabName = `Tab ${browserTabs.length + 1}`;
@@ -71,11 +81,12 @@ function Overview() {
       {activeTab.isEditing ? (
         <div className="mb-6">
           <ReactQuill
+            ref={editorRef}
             value={activeTab.blogContent}
             onChange={(content) => updateActiveTab("blogContent", content)}
             placeholder="Write something or attach a photo..."
             className="w-full border rounded-md"
-            style={{ minHeight: "250px" }}
+            style={{ overflow: "hidden" }}
           />
           <div className="mt-6 flex justify-end space-x-4">
             <button
@@ -95,6 +106,7 @@ function Overview() {
       ) : (
         <div className="mb-6">
           <div
+            ref={previewRef}
             className="w-full min-h-40 p-2 border rounded-md bg-gray-100"
             dangerouslySetInnerHTML={{ __html: activeTab.blogContent }}
           ></div>
