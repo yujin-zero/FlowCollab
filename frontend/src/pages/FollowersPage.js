@@ -12,7 +12,12 @@ function FollowersPage() {
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* Header */}
       <header className="flex justify-between items-center px-6 py-4 bg-gray-900 text-white">
-        <h1 className="text-2xl font-bold">FlowCollab</h1>
+      <h1
+          className="text-2xl font-bold cursor-pointer"
+          onClick={() => (window.location.href = "/")}
+        >
+          FlowCollab
+        </h1>
         <button
           onClick={() => (window.location.href = "/")}
           className="px-4 py-2 bg-blue-500 rounded-md text-sm hover:bg-blue-600"
