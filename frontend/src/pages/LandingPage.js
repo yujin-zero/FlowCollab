@@ -25,24 +25,23 @@ function LandingPage() {
       {/* Hero Section */}
       <main className="flex-1 flex flex-col items-center justify-center text-center p-6">
         <h2 className="text-4xl font-bold mb-6 text-gray-800">
-          Collaborate Smarter with FlowCollab
+          FlowCollab과 함께 스마트하게 협업하세요
         </h2>
         <p className="text-lg text-gray-600 mb-6">
-          Manage projects, communicate effectively, and stay productive with our
-          all-in-one collaboration platform.
+          프로젝트를 관리하고, 효과적으로 소통하며, 생산성을 높일 수 있는 올인원 협업 플랫폼입니다.
         </p>
         <div className="space-x-4">
           <button
             onClick={() => (window.location.href = "/signup")}
             className="px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 text-lg"
           >
-            Get Started
+            시작하기
           </button>
           <button
             onClick={() => (window.location.href = "/about")}
             className="px-6 py-3 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 text-lg"
           >
-            Learn More
+            더 알아보기
           </button>
         </div>
       </main>
@@ -51,21 +50,21 @@ function LandingPage() {
       <section className="bg-white py-12">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
           <div className="p-6 bg-gray-50 rounded-md shadow-md">
-            <h3 className="text-xl font-bold mb-2">Real-Time Collaboration</h3>
+            <h3 className="text-xl font-bold mb-2">실시간 협업</h3>
             <p className="text-gray-600">
-              Work seamlessly with your team in real-time with advanced tools.
+              고급 도구를 통해 팀과 실시간으로 원활하게 작업하세요.
             </p>
           </div>
           <div className="p-6 bg-gray-50 rounded-md shadow-md">
-            <h3 className="text-xl font-bold mb-2">Project Management</h3>
+            <h3 className="text-xl font-bold mb-2">프로젝트 관리</h3>
             <p className="text-gray-600">
-              Keep track of tasks, milestones, and progress effortlessly.
+              작업, 마일스톤 및 진행 상황을 손쉽게 추적하세요.
             </p>
           </div>
           <div className="p-6 bg-gray-50 rounded-md shadow-md">
-            <h3 className="text-xl font-bold mb-2">Secure Environment</h3>
+            <h3 className="text-xl font-bold mb-2">안전한 환경</h3>
             <p className="text-gray-600">
-              Your data is safe with our top-notch security infrastructure.
+              최고의 보안 인프라로 데이터를 안전하게 보호합니다.
             </p>
           </div>
         </div>

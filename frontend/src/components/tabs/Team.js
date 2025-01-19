@@ -5,34 +5,34 @@ function Team() {
     {
       name: "Alice",
       tasks: {
-        "To Do": ["Task 1", "Task 2"],
-        "In Progress": [],
-        "Done": [],
+        "할 일": ["작업 1", "작업 2"],
+        "진행 중": [],
+        "완료": [],
       },
     },
     {
       name: "Bob",
       tasks: {
-        "To Do": ["Task 3"],
-        "In Progress": ["Task 4"],
-        "Done": [],
+        "할 일": ["작업 3"],
+        "진행 중": ["작업 4"],
+        "완료": [],
       },
     },
     {
       name: "Charlie",
       tasks: {
-        "To Do": [],
-        "In Progress": ["Task 5"],
-        "Done": ["Task 6"],
+        "할 일": [],
+        "진행 중": ["작업 5"],
+        "완료": ["작업 6"],
       },
     },
   ]);
 
   const [taskInputs, setTaskInputs] = useState(
     members.map(() => ({
-      "To Do": "",
-      "In Progress": "",
-      "Done": "",
+      "할 일": "",
+      "진행 중": "",
+      "완료": "",
     }))
   );
 
@@ -126,13 +126,13 @@ function Team() {
                         onChange={(e) =>
                           handleInputChange(memberIndex, status, e.target.value)
                         }
-                        placeholder="Add task"
+                        placeholder="작업 추가"
                         className="p-2 border rounded-md w-3/4"
                       />
                       <button
                         onClick={() => addTask(memberIndex, status)}
                         className="w-8 h-8 flex items-center justify-center bg-blue-500 text-white rounded-full hover:bg-blue-600 text-sm"
-                        title="Add Task"
+                        title="작업 추가"
                       >
                         +
                       </button>
@@ -149,38 +149,38 @@ function Team() {
       {selectedTask && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-md shadow-lg w-96">
-            <h3 className="text-lg font-semibold mb-4">Manage Task</h3>
+            <h3 className="text-lg font-semibold mb-4">작업 관리</h3>
             <div className="space-y-2">
               <button
-                onClick={() => updateTaskStatus("To Do")}
+                onClick={() => updateTaskStatus("할 일")}
                 className="w-full py-2 px-4 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
               >
-                Move to To Do
+                "할 일"로 이동
               </button>
               <button
-                onClick={() => updateTaskStatus("In Progress")}
+                onClick={() => updateTaskStatus("진행 중")}
                 className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
               >
-                Move to In Progress
+                "진행 중"으로 이동
               </button>
               <button
-                onClick={() => updateTaskStatus("Done")}
+                onClick={() => updateTaskStatus("완료")}
                 className="w-full py-2 px-4 bg-green-500 text-white rounded-md hover:bg-green-600"
               >
-                Move to Done
+                "완료"로 이동
               </button>
               <button
                 onClick={deleteTask}
                 className="w-full py-2 px-4 bg-red-500 text-white rounded-md hover:bg-red-600"
               >
-                Delete Task
+                작업 삭제
               </button>
             </div>
             <button
               onClick={() => setSelectedTask(null)}
               className="mt-4 w-full py-2 px-4 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400"
             >
-              Cancel
+              취소
             </button>
           </div>
         </div>

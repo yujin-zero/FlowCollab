@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function Settings() {
   const [projectName, setProjectName] = useState("FlowCollab Project");
   const [projectDescription, setProjectDescription] = useState(
-    "This is a project description."
+    "이것은 프로젝트 설명입니다."
   );
   const [inviteEmail, setInviteEmail] = useState("");
   const [isEditingName, setIsEditingName] = useState(false);
@@ -11,27 +11,27 @@ function Settings() {
 
   const saveName = () => {
     setIsEditingName(false);
-    alert(`Project Name saved: ${projectName}`);
+    alert(`프로젝트 이름이 저장되었습니다: ${projectName}`);
   };
 
   const saveDescription = () => {
     setIsEditingDescription(false);
-    alert(`Project Description saved: ${projectDescription}`);
+    alert(`프로젝트 설명이 저장되었습니다: ${projectDescription}`);
   };
 
   const handleInvite = () => {
     if (!inviteEmail.trim()) {
-      alert("Please enter a valid email address.");
+      alert("유효한 이메일 주소를 입력해주세요.");
       return;
     }
-    alert(`Invitation sent to: ${inviteEmail}`);
+    alert(`초대장이 발송되었습니다: ${inviteEmail}`);
     setInviteEmail("");
   };
 
   const deleteProject = () => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this project?");
+    const confirmDelete = window.confirm("정말로 이 프로젝트를 삭제하시겠습니까?");
     if (confirmDelete) {
-      alert("Project deleted!");
+      alert("프로젝트가 삭제되었습니다!");
       // 실제 삭제 로직을 서버 요청과 함께 추가할 수 있습니다.
     }
   };
@@ -40,7 +40,7 @@ function Settings() {
     <div className="p-4 space-y-6">
       {/* Project Name */}
       <div>
-        <h2 className="text-lg font-bold mb-2">Project Name</h2>
+        <h2 className="text-lg font-bold mb-2">프로젝트 이름</h2>
         <div className="flex items-center space-x-2">
           {isEditingName ? (
             <>
@@ -54,7 +54,7 @@ function Settings() {
                 onClick={saveName}
                 className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
               >
-                Save
+                저장
               </button>
             </>
           ) : (
@@ -64,7 +64,7 @@ function Settings() {
                 onClick={() => setIsEditingName(true)}
                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
               >
-                Edit
+                수정
               </button>
             </>
           )}
@@ -73,7 +73,7 @@ function Settings() {
 
       {/* Project Description */}
       <div>
-        <h2 className="text-lg font-bold mb-2">Project Description</h2>
+        <h2 className="text-lg font-bold mb-2">프로젝트 설명</h2>
         <div className="flex items-center space-x-2">
           {isEditingDescription ? (
             <>
@@ -86,7 +86,7 @@ function Settings() {
                 onClick={saveDescription}
                 className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
               >
-                Save
+                저장
               </button>
             </>
           ) : (
@@ -96,7 +96,7 @@ function Settings() {
                 onClick={() => setIsEditingDescription(true)}
                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
               >
-                Edit
+                수정
               </button>
             </>
           )}
@@ -105,32 +105,32 @@ function Settings() {
 
       {/* Invite Team Member */}
       <div>
-        <h2 className="text-lg font-bold mb-2">Invite Team Member</h2>
+        <h2 className="text-lg font-bold mb-2">팀 멤버 초대</h2>
         <div className="flex items-center space-x-2">
           <input
             type="email"
             value={inviteEmail}
             onChange={(e) => setInviteEmail(e.target.value)}
-            placeholder="Enter email address"
+            placeholder="이메일 주소를 입력하세요"
             className="flex-1 p-2 border rounded-md"
           />
           <button
             onClick={handleInvite}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
-            Invite
+            초대
           </button>
         </div>
       </div>
 
       {/* Delete Project */}
       <div>
-        <h2 className="text-lg font-bold mb-2 text-red-500">Delete Project</h2>
+        <h2 className="text-lg font-bold mb-2 text-red-500">프로젝트 삭제</h2>
         <button
           onClick={deleteProject}
           className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
         >
-          Delete Project
+          프로젝트 삭제
         </button>
       </div>
     </div>

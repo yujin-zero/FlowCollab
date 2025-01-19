@@ -4,16 +4,16 @@ import "react-quill/dist/quill.snow.css"; // Quill의 기본 스타일
 
 function Overview() {
   const [browserTabs, setBrowserTabs] = useState([
-    { name: "Tab 1", blogContent: "", comments: [], isEditing: false }
+    { name: "탭 1", blogContent: "", comments: [], isEditing: false }
   ]);
-  const [activeBrowserTab, setActiveBrowserTab] = useState("Tab 1");
+  const [activeBrowserTab, setActiveBrowserTab] = useState("탭 1");
   const [newComment, setNewComment] = useState("");
-  const [currentUser] = useState("Anonymous"); // Placeholder for user ID
+  const [currentUser] = useState("익명"); // 사용자 ID 자리표시자
   const previewRef = useRef(null);
   const editorRef = useRef(null);
 
   useEffect(() => {
-    // Adjust the editor height to match the preview height exactly
+    // 편집기 높이를 미리보기 높이와 정확히 맞춤
     if (previewRef.current && editorRef.current) {
       const previewHeight = previewRef.current.clientHeight;
       editorRef.current.style.height = `${previewHeight}px`;
@@ -21,7 +21,7 @@ function Overview() {
   }, [browserTabs, activeBrowserTab]);
 
   const addBrowserTab = () => {
-    const newTabName = `Tab ${browserTabs.length + 1}`;
+    const newTabName = `탭 ${browserTabs.length + 1}`;
     setBrowserTabs([
       ...browserTabs,
       { name: newTabName, blogContent: "", comments: [], isEditing: false }
@@ -45,8 +45,8 @@ function Overview() {
     const activeTabData = browserTabs.find(
       (tab) => tab.name === activeBrowserTab
     );
-    console.log("Saving Data:", activeTabData);
-    alert(`Data for ${activeBrowserTab} saved!`);
+    console.log("저장 데이터:", activeTabData);
+    alert(`${activeBrowserTab} 데이터가 저장되었습니다!`);
     toggleEditMode();
   };
 
@@ -54,7 +54,7 @@ function Overview() {
 
   const handleContextMenu = (event, tabName) => {
     event.preventDefault();
-    const newName = prompt("Enter new name for the tab:", tabName);
+    const newName = prompt("탭의 새 이름을 입력하세요:", tabName);
     if (newName && newName.trim()) {
       setBrowserTabs((tabs) =>
         tabs.map((tab) =>
@@ -89,7 +89,7 @@ function Overview() {
             onClick={addBrowserTab}
             className="ml-2 px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
           >
-            + Add Tab
+            + 탭 추가
           </button>
         </div>
       </div>
@@ -100,7 +100,7 @@ function Overview() {
             ref={editorRef}
             value={activeTab.blogContent}
             onChange={(content) => updateActiveTab("blogContent", content)}
-            placeholder="Write something or attach a photo..."
+            placeholder="내용을 작성하거나 사진을 첨부하세요..."
             className="w-full border rounded-md"
             style={{ overflow: "hidden" }}
           />
@@ -109,13 +109,13 @@ function Overview() {
               onClick={saveData}
               className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
             >
-              Save
+              저장
             </button>
             <button
               onClick={toggleEditMode}
               className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
             >
-              Cancel
+              취소
             </button>
           </div>
         </div>
@@ -130,13 +130,13 @@ function Overview() {
             onClick={toggleEditMode}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
-            Edit
+            편집
           </button>
         </div>
       )}
 
       <div className="border-t pt-4">
-        <h2 className="text-lg font-bold mb-2">Comments</h2>
+        <h2 className="text-lg font-bold mb-2">댓글</h2>
         <ul className="mb-4">
           {activeTab.comments.map((comment, index) => (
             <li key={index} className="mb-2 p-2 border rounded-md">
@@ -149,7 +149,7 @@ function Overview() {
             type="text"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Write a comment..."
+            placeholder="댓글을 작성하세요..."
             className="flex-1 p-2 border rounded-md mr-2"
           />
           <button
@@ -159,7 +159,7 @@ function Overview() {
             }}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
           >
-            Add
+            추가
           </button>
         </div>
       </div>
