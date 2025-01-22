@@ -15,6 +15,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public User registerUser(String username, String password, String name) {
+        checkUsernameDuplicate(username);
+
         User user = new User(
             username,
             passwordEncoder.encode(password),
@@ -23,5 +25,11 @@ public class UserService {
             LocalDateTime.now()
         );
         return userRepository.save(user);
+    }
+
+    private void checkUsernameDuplicate(String username) {
+        if (userRepository.findByUsername(username) != null) {
+            throw new IllegalArgumentException("Username already exists");
+        }
     }
 }

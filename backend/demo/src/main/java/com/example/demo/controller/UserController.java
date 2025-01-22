@@ -19,11 +19,15 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponseDto> registerUser(@RequestParam String username,
+    public ResponseEntity<?> registerUser(@RequestParam String username,
                                                         @RequestParam String password,
                                                         @RequestParam String name) {
-        User user = userService.registerUser(username,password,name);
-        UserResponseDto responseDto = new UserResponseDto(user.getUsername(),user.getName());
-        return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+        try {
+            User user = userService.registerUser(username,password,name);
+            UserResponseDto responseDto = new UserResponseDto(user.getUsername(),user.getName());
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
 }

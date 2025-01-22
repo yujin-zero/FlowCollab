@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -40,5 +42,20 @@ public class UserServiceTest {
         assertThat(user.getUsername()).isEqualTo(username);
         verify(userRepository, times(1)).save(any(User.class));
 
+    }
+
+    @Test
+    @DisplayName("username 중복 검사")
+    void testRegisterUserDuplicateUsername() {
+        String username = "testuser";
+
+        when(userRepository.findByUsername(username)).thenReturn(new User());
+
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> userService.registerUser(username, "password123","Test User")
+        );
+        assertThat(exception.getMessage()).isEqualTo("Username already exists");
+        verify(userRepository, never()).save(any(User.class));
     }
 }
