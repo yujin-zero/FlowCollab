@@ -48,4 +48,14 @@ public class JwtLoginIntegrationTest {
                 .andExpect(jsonPath("$.token").isString());
 
     }
+
+    @Test
+    @DisplayName("잘못된 비밀번호로 로그인 요청")
+    void testLoginFailure() throws Exception {
+        mockMvc.perform(post("/api/login")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("username","testuser")
+                .param("password","wrongpassword"))
+                .andExpect(status().isUnauthorized());
+    }
 }
