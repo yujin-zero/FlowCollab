@@ -45,7 +45,7 @@ public class JwtLoginIntegrationTest {
                 .param("username","testuser")
                 .param("password","password"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").isString());
+                .andExpect(jsonPath("$.token").isString());
 
     }
 }
