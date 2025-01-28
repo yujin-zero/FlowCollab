@@ -1,12 +1,14 @@
 package com.example.demo;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import java.time.LocalDateTime;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,7 +47,8 @@ public class JwtLoginIntegrationTest {
                 .param("username","testuser")
                 .param("password","password"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.token").isString());
+                .andExpect(header().exists("Set-Cookie"))
+                .andExpect(header().string("Set-Cookie", Matchers.containsString("jwtToken=")));
 
     }
 
