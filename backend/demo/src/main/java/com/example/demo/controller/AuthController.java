@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.util.JwtUtil;
 import java.util.Map;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,7 +35,16 @@ public class AuthController {
             );
 
             String token = jwtUtil.generateToken(username); // JWT 생성
-            return ResponseEntity.ok(Map.of("token",token)); // JWT 반환
+
+            ResponseCookie cookie = ResponseCookie.from("jwtToken",token)
+                    .httpOnly(true)
+                    .path("/")
+                    .maxAge(60*60*10) // 10시간
+                    .build();
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.SET_COOKIE, cookie.toString())
+                    .body("로그인 성공");
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
