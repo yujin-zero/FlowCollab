@@ -36,12 +36,12 @@ public class User {
 
     public User() {}
 
-    public User(String username, String password, String name, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(String username, String password, String name) {
         this.username = username;
         this.password = password;
         this.name = name;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
 }
