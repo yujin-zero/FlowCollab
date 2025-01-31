@@ -35,8 +35,7 @@ public class JwtLoginIntegrationTest {
     @BeforeEach
     void setUp() {
         userRepository.deleteAll();
-        userRepository.save(new User("testuser",passwordEncoder.encode("password"),"유진", LocalDateTime.now(),
-                LocalDateTime.now()));
+        userRepository.save(new User("testuser",passwordEncoder.encode("password"),"유진"));
     }
 
     @Test
