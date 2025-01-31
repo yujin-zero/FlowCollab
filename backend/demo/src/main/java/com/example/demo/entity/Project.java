@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -28,7 +29,8 @@ public class Project {
     private String name;
 
     @Setter
-    @Column(columnDefinition = "TEXT")
+    @Lob
+    @Column
     private String description;
 
     @Setter
